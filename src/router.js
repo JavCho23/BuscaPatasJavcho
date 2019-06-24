@@ -9,17 +9,27 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
+      path:'/',
+      name: 'login',
+      component: () => import('@/components/Login.vue')
+    },
+    {
+      path: '/home',
       name: 'home',
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
+      path: '/main',
+      name: 'themain',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      component: () => import(/* webpackChunkName: "about" */ './components/TheMain.vue')
+    },
+    {
+      path : '/perritos',
+      name : 'perritos',
+      component: () => import ('@/views/Perritos.vue')
     }
   ]
 })
