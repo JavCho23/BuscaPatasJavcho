@@ -59,7 +59,7 @@ export default {
         login(){
            firebase.auth()
            .signInWithEmailAndPassword(this.user, this.pass) // eslint-disable-next-line
-           .then((user) => alert('Usuario Conectado'), (error) => console.error(error)) 
+           .then((user) => this.$router.replace('registrar'), (error) => console.error(error)) 
            
         }
     }

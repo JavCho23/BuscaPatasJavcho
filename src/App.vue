@@ -13,9 +13,10 @@
         <span class="mr-2">{{item}}</span>
       </v-btn>
       </router-link>
+      <v-btn color="success" @click="logout" >Salir</v-btn>
     </v-toolbar>
     <v-content>
-        <v-container grid-list-xs>
+        <v-container grid-list-lg>
             <router-view/>
         </v-container>
     </v-content>
@@ -23,11 +24,19 @@
 </template>
 
 <script>
+import firebase from 'firebase/app'
+import 'firebase/auth'
 export default {
   name: 'App',
   data () {
     return {
-      Rutas:['home','perritos']
+      Rutas:['home','perritos','registrar']
+    }
+  },
+  methods: {
+    logout(){
+      firebase.auth().signOut()
+      .then( () => this.$router.replace('login')) 
     }
   }
 }

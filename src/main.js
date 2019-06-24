@@ -18,10 +18,12 @@ var firebaseConfig = {
   appId: "1:516720288562:web:2c07034d74ed0dd8"
 };
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+firebase.initializeApp(firebaseConfig);// eslint-disable-next-line
+firebase.auth().onAuthStateChanged(function (user) {
+  new Vue({
+    router,
+    store,
+    render: h => h(App)
+  }).$mount('#app')
+  
+});
