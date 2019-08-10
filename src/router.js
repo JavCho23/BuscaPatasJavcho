@@ -40,9 +40,9 @@ const router = new Router({
       path : '/registrar',
       name : 'registrar',
       component: () => import ('./views/RegisterPets.vue'),
-      // meta: {
-      //   authenticacion: true
-      // }
+      meta: {
+        authenticacion: true
+      }
     }
   ]
 })

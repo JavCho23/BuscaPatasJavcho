@@ -34,12 +34,20 @@
                </v-flex>
               </v-layout>
               <v-layout row wrap justify-center>
-                   <v-flex xs4>
-                    <v-text-field
-                        color="secondary"
-                        type="submit"
-
-                    ></v-text-field>
+                  <v-flex xs8>
+                      <v-btn raised class="secondary" @click="onSubirArchivo" >Subir Imagen</v-btn>
+                      <input style="display: none" 
+                      type="file" 
+                      ref="fileInput" 
+                      accept="image/*"
+                      @change="onUpload">
+                  </v-flex>
+              </v-layout>
+              <v-layout row wrap justify-center>
+                   <v-flex xs1>
+                   <v-btn color="success"
+                   type="submit" 
+                   >Enviar</v-btn>
                </v-flex>
               </v-layout>
            </v-container>
@@ -54,7 +62,9 @@ export default {
         return{
             nombre : "",
             edad : 0,
-            descripcion: ""
+            descripcion: "",
+            image: null,
+            imageUrl: ""
         }
     },
     methods:{
@@ -71,6 +81,22 @@ export default {
                     console.error("Error adding document: ", error);
                 });
             
+        },
+        onSubirArchivo(){
+            this.$refs.fileInput.click();
+        },
+        onUpload(event){
+            const files = event.target.files;
+            let filename = files[0].name;
+            if (filename.lastIndexOf('.') <= 0 ) {
+                return alert('Subir una imagen por favor');
+            }
+            const fileReader = new FileReader();
+            fileReader.addEventListener('load', ()=>{
+                this.imageUrl =fileReader.result;
+            })
+            fileReader.readAsDataURL(files[0]);
+            this.image = files[0];
         }
     }
 }

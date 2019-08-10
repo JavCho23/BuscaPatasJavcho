@@ -34,12 +34,11 @@
                
             
             <v-layout row wrap justify-center>
-                <v-flex xs3>
-                            <v-text-field
-                            color="secondary"
-                            type="submit"
-                        >
-                    </v-text-field>
+            <v-flex xs1>
+                <v-btn color="success"
+                   type="submit">
+                   Enviar
+                   </v-btn>
                 </v-flex>
             </v-layout>
         </v-container>
